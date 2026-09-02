@@ -1,1 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eldhose Elias — Senior Full-Stack Developer</title>
+<meta name="description" content="Eldhose Elias, Senior Full-Stack Developer and Technology Lead at Infosys, Toronto. Ten years building with Angular, Node.js and MongoDB.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1826;
+    --ink-2:#131F32;
+    --ink-3:#182740;
+    --line:rgba(215,228,245,0.14);
+    --line-strong:rgba(215,228,245,0.28);
+    --text:#EAEEF5;
+    --text-dim:#93A5C0;
+    --text-faint:#5E6E88;
+    --amber:#F2A93B;
+    --amber-dim:#8A6323;
+    --teal:#5FD4C0;
+    --teal-dim:#2C6459;
+    --serif-none: none;
+    --max:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'IBM Plex Sans', Arial, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    background-attachment:fixed;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    margin:0;
+    color:#F5F7FB;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
 
+  /* nav */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(14,24,38,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600; font-size:17px; color:#fff;
+    text-decoration:none;
+  }
+  .brand .mark{
+    width:30px; height:30px; border:1px solid var(--line-strong);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; letter-spacing:0.02em; color:var(--amber);
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .navlinks{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    text-decoration:none; color:var(--text-dim); font-size:14px;
+    padding:6px 2px; border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .navlinks a:hover, .navlinks a.active{color:var(--text); border-bottom-color:var(--amber);}
+  .navmeta{font-size:13px; color:var(--text-faint); display:flex; align-items:center; gap:8px;}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--teal); display:inline-block;}
+  .navtoggle{display:none; background:none; border:1px solid var(--line-strong); color:var(--text); width:38px; height:38px; cursor:pointer;}
+
+  section{padding:96px 0;}
+  section.tight{padding:72px 0;}
+  .section-head{margin-bottom:44px; max-width:640px;}
+  .section-head h2{font-size:30px; letter-spacing:-0.01em;}
+  .section-head p{color:var(--text-dim); margin-top:12px; font-size:16px;}
+  .kicker{
+    font-size:13px; color:var(--amber); font-family:'IBM Plex Mono', monospace;
+    margin-bottom:10px; display:block;
+  }
+
+  /* hero */
+  .hero{padding:88px 0 96px; border-bottom:1px solid var(--line);}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+  .hero h1{font-size:44px; line-height:1.16; letter-spacing:-0.01em; max-width:560px;}
+  .hero .lede{margin-top:22px; color:var(--text-dim); font-size:17px; max-width:480px;}
+  .hero .facts{display:flex; gap:28px; margin-top:32px; flex-wrap:wrap;}
+  .fact{border-left:2px solid var(--amber); padding-left:12px;}
+  .fact b{display:block; font-size:20px; font-family:'Space Grotesk',sans-serif; color:#fff;}
+  .fact span{font-size:13px; color:var(--text-faint);}
+  .cta-row{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 22px; font-size:14px; text-decoration:none;
+    border:1px solid var(--line-strong); color:var(--text);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn.primary{background:var(--amber); color:#241705; border-color:var(--amber); font-weight:600;}
+  .btn.primary:hover{background:#ffbe5c;}
+  .btn.ghost:hover{border-color:var(--teal); color:var(--teal);}
+
+  .terminal{
+    margin-top:34px; max-width:480px; border:1px solid var(--line-strong);
+    background:#0A121D;
+  }
+  .terminal-bar{
+    display:flex; gap:6px; padding:9px 12px; border-bottom:1px solid var(--line);
+  }
+  .terminal-bar span{width:9px; height:9px; border-radius:50%; background:var(--line-strong); display:inline-block;}
+  .terminal-body{
+    padding:16px 18px; font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    color:var(--text-dim); line-height:1.9;
+  }
+  .terminal-body .prompt{color:var(--teal);}
+  .terminal-body .out{color:#F5F7FB; margin:0 0 10px;}
+
+  /* stack diagram */
+  .stackdiagram{border:1px solid var(--line-strong); padding:22px; position:relative;}
+  .stackdiagram svg{width:100%; height:auto; display:block;}
+
+  /* about */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:60px;}
+  .about-grid p{color:var(--text-dim); font-size:16px; max-width:520px;}
+  .about-grid p + p{margin-top:16px;}
+  .about-side{border-left:1px solid var(--line); padding-left:28px;}
+  .side-stat{padding:14px 0; border-bottom:1px solid var(--line);}
+  .side-stat:last-child{border-bottom:none;}
+  .side-stat b{font-family:'Space Grotesk',sans-serif; font-size:22px; color:#fff; display:block;}
+  .side-stat span{font-size:13px; color:var(--text-faint);}
+
+  /* skills */
+  .skill-table{border-top:1px solid var(--line-strong);}
+  .skill-row{
+    display:grid; grid-template-columns:220px 1fr;
+    border-bottom:1px solid var(--line);
+    padding:22px 0;
+    gap:24px;
+  }
+  .skill-row .layer{
+    font-family:'Space Grotesk',sans-serif; font-size:16px; color:#fff;
+  }
+  .skill-row .layer span{display:block; font-size:12px; color:var(--text-faint); font-family:'IBM Plex Mono',monospace; margin-top:4px;}
+  .chiprow{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{
+    font-size:13px; color:var(--text-dim); border:1px solid var(--line);
+    padding:6px 12px;
+  }
+
+  /* experience timeline */
+  .timeline{border-left:1px solid var(--line-strong); margin-left:8px; padding-left:36px; position:relative;}
+  .tlitem{position:relative; padding-bottom:44px;}
+  .tlitem:last-child{padding-bottom:0;}
+  .tlitem::before{
+    content:''; position:absolute; left:-41px; top:4px;
+    width:9px; height:9px; background:var(--ink); border:2px solid var(--amber); border-radius:50%;
+  }
+  .tlitem .when{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--teal); margin-bottom:6px; display:block;}
+  .tlitem h3{font-size:19px;}
+  .tlitem .role{color:var(--text-dim); font-size:14px; margin-top:4px;}
+  .tlitem p{color:var(--text-dim); font-size:15px; margin-top:10px; max-width:560px;}
+
+  .clients{margin-top:52px; border-top:1px solid var(--line); padding-top:28px;}
+  .clients h3{font-size:15px; color:var(--text-faint); font-weight:500; margin-bottom:18px; font-family:'IBM Plex Sans',sans-serif;}
+  .client-list{display:flex; flex-wrap:wrap; gap:12px 34px; list-style:none; padding:0; margin:0;}
+  .client-list li{font-size:15px; color:var(--text-dim); font-family:'Space Grotesk',sans-serif;}
+
+  /* project */
+  .project{border:1px solid var(--line-strong); padding:0 44px 44px; background:var(--ink-2);}
+  .repo-head{
+    display:flex; align-items:center; gap:10px; margin:0 -44px 32px; padding:16px 44px;
+    border-bottom:1px solid var(--line); font-family:'IBM Plex Mono', monospace; font-size:13px;
+    color:var(--text-dim);
+  }
+  .repo-icon{font-style:normal; color:var(--amber);}
+  .repo-path b{color:#F5F7FB; font-weight:500;}
+  .repo-visibility{margin-left:auto; font-size:11px; color:var(--text-faint); border:1px solid var(--line); padding:3px 9px;}
+  .project h3{padding-top:0;}
+  .project-top{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; padding-top:44px;}
+  .project h3{font-size:26px; max-width:460px;}
+  .project .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--amber); border:1px solid var(--amber-dim); padding:5px 10px;}
+  .project p{color:var(--text-dim); margin-top:18px; max-width:640px; font-size:15.5px;}
+  .flow{margin-top:36px; overflow-x:auto;}
+  .flow svg{min-width:640px;}
+  .stackline{margin-top:24px; display:flex; flex-wrap:wrap; gap:10px;}
+
+  /* contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end;}
+  .contact-grid h2{font-size:32px; max-width:440px; line-height:1.25;}
+  .contact-grid .lede{color:var(--text-dim); margin-top:16px; max-width:420px;}
+  .contact-actions{display:flex; flex-direction:column; gap:14px; align-items:flex-end;}
+  .contact-actions .btn{width:260px; justify-content:center;}
+  .contact-loc{font-size:13px; color:var(--text-faint); font-family:'IBM Plex Mono',monospace; text-align:right;}
+
+  footer{border-top:1px solid var(--line); padding:28px 0; font-size:13px; color:var(--text-faint);}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:860px){
+    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .contact-actions{align-items:flex-start;}
+    .contact-loc{text-align:left;}
+    .skill-row{grid-template-columns:1fr;}
+    .navlinks{
+      position:absolute; top:68px; left:0; right:0; background:var(--ink-2);
+      flex-direction:column; padding:18px 32px; border-bottom:1px solid var(--line);
+      display:none;
+    }
+    .navlinks.open{display:flex;}
+    .navtoggle{display:block;}
+    .hero h1{font-size:34px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand"><span class="mark">EE</span>Eldhose Elias</a>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="navmeta"><span class="dot"></span>Toronto, Canada</div>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu">≡</button>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Full-stack engineering, end to end — from Angular interfaces to MongoDB schemas.</h1>
+      <p class="lede">Senior Full-Stack Developer and Technology Lead at Infosys, based in Toronto. Ten years in the MEAN stack, leading both the frontend and backend of systems that retailers rely on every day.</p>
+      <div class="facts">
+        <div class="fact"><b>10 yrs</b><span>MEAN stack</span></div>
+        <div class="fact"><b>2021</b><span>Joined Infosys</span></div>
+        <div class="fact"><b>Toronto</b><span>Based in Canada</span></div>
+      </div>
+      <div class="cta-row">
+        <a href="#work" class="btn primary">See the work</a>
+        <a href="https://www.linkedin.com/in/eldhoseelias/" target="_blank" rel="noopener" class="btn ghost">Connect on LinkedIn</a>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <div class="terminal-body">
+          <div><span class="prompt">$</span> whoami</div>
+          <div class="out">eldhose-elias — senior full-stack developer</div>
+          <div><span class="prompt">$</span> cat stack.txt</div>
+          <div class="out">angular · rxjs · node.js · express · mongodb · aws</div>
+          <div><span class="prompt">$</span> echo $LOCATION</div>
+          <div class="out">Toronto, Canada</div>
+        </div>
+      </div>
+    </div>
+    <div class="stackdiagram">
+      <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of the MEAN stack layers Eldhose works across">
+        <rect x="1" y="1" width="398" height="318" fill="none" stroke="rgba(215,228,245,0.28)" stroke-dasharray="4 5"/>
+        <text x="18" y="26" fill="#5FD4C0" font-family="IBM Plex Mono, monospace" font-size="11">// full-stack.map</text>
+
+        <rect x="30" y="46" width="340" height="56" fill="none" stroke="#F2A93B" stroke-width="1.4"/>
+        <text x="46" y="70" fill="#F5F7FB" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">Angular + RxJS</text>
+        <text x="46" y="88" fill="#93A5C0" font-family="IBM Plex Sans, sans-serif" font-size="11">Client interfaces</text>
+
+        <line x1="200" y1="102" x2="200" y2="118" stroke="rgba(215,228,245,0.4)"/>
+
+        <rect x="30" y="118" width="340" height="56" fill="none" stroke="rgba(215,228,245,0.4)" stroke-width="1.4"/>
+        <text x="46" y="142" fill="#F5F7FB" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">Node.js + Express</text>
+        <text x="46" y="160" fill="#93A5C0" font-family="IBM Plex Sans, sans-serif" font-size="11">APIs, auth, services</text>
+
+        <line x1="200" y1="174" x2="200" y2="190" stroke="rgba(215,228,245,0.4)"/>
+
+        <rect x="30" y="190" width="340" height="56" fill="none" stroke="rgba(215,228,245,0.4)" stroke-width="1.4"/>
+        <text x="46" y="214" fill="#F5F7FB" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">MongoDB + Redis</text>
+        <text x="46" y="232" fill="#93A5C0" font-family="IBM Plex Sans, sans-serif" font-size="11">Data and caching</text>
+
+        <line x1="200" y1="246" x2="200" y2="262" stroke="rgba(215,228,245,0.4)"/>
+
+        <rect x="30" y="262" width="340" height="40" fill="none" stroke="#5FD4C0" stroke-width="1.2"/>
+        <text x="46" y="287" fill="#5FD4C0" font-family="IBM Plex Mono, monospace" font-size="12">AWS · CI/CD · Splunk / Dynatrace</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="kicker">01 — about</span>
+      <h2>A decade in the stack, on both sides of the API.</h2>
+      <p style="margin-top:24px;">Eldhose has spent ten years building web applications end to end — Angular front ends wired up with RxJS, and Node and Express services backed by MongoDB. He joined Infosys in January 2021 as a developer and has since grown into a Senior Full-Stack Developer and Technology Lead role.</p>
+      <p>He's currently on an onsite engagement with Advantage Solutions, leading the frontend and backend of an event-management platform used across North America and Australia.</p>
+    </div>
+    <div class="about-side">
+      <div class="side-stat"><b>Developer → Tech Lead</b><span>Progression at Infosys since Jan 2021</span></div>
+      <div class="side-stat"><b>State without NgRx</b><span>RxJS / BehaviorSubject-driven architecture</span></div>
+      <div class="side-stat"><b>Onsite, Toronto</b><span>Client engagement with Advantage Solutions</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="border-top:1px solid var(--line);">
+  <div class="wrap">
+    <span class="kicker">02 — skills</span>
+    <div class="section-head">
+      <h2>Working across the whole stack.</h2>
+    </div>
+    <div class="skill-table">
+      <div class="skill-row">
+        <div class="layer">Frontend<span>presentation layer</span></div>
+        <div class="chiprow">
+          <span class="chip">Angular</span><span class="chip">RxJS</span><span class="chip">TypeScript</span><span class="chip">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="layer">Backend<span>application layer</span></div>
+        <div class="chiprow">
+          <span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">REST APIs</span><span class="chip">JWT / OAuth2</span><span class="chip">Microservices</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="layer">Data &amp; infra<span>persistence layer</span></div>
+        <div class="chiprow">
+          <span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">RabbitMQ</span><span class="chip">AWS Lambda</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="layer">Quality &amp; delivery<span>ops layer</span></div>
+        <div class="chiprow">
+          <span class="chip">Jasmine</span><span class="chip">Karma</span><span class="chip">Mocha</span><span class="chip">Jest</span><span class="chip">GitHub Actions</span><span class="chip">Splunk</span><span class="chip">Dynatrace</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="border-top:1px solid var(--line);">
+  <div class="wrap">
+    <span class="kicker">03 — experience</span>
+    <div class="section-head">
+      <h2>Where the work has been.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tlitem">
+        <span class="when">Jan 2021 — Present</span>
+        <h3>Infosys Limited</h3>
+        <div class="role">Developer → Senior Full-Stack Developer / Technology Lead</div>
+        <p>Progressed from developer to a lead role over five years, now on an onsite client assignment.</p>
+      </div>
+      <div class="tlitem">
+        <span class="when">Current engagement</span>
+        <h3>Advantage Solutions — Event System</h3>
+        <div class="role">Onsite technology lead</div>
+        <p>Leading development on a MEAN-stack platform for planning and running in-store product demos.</p>
+      </div>
+    </div>
+
+    <div class="clients">
+      <h3>Clients he's built for</h3>
+      <ul class="client-list">
+        <li>Costco Wholesale Corporation</li>
+        <li>Medical Review Institute of America</li>
+        <li>Manipal University</li>
+        <li>IIMB College</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="border-top:1px solid var(--line);">
+  <div class="wrap">
+    <span class="kicker">04 — featured work</span>
+    <div class="section-head">
+      <h2>The Event System.</h2>
+    </div>
+    <div class="project">
+      <div class="repo-head">
+        <i class="repo-icon">◧</i>
+        <span class="repo-path">advantage-solutions / <b>event-system</b></span>
+        <span class="repo-visibility">Client engagement</span>
+      </div>
+      <div class="project-top">
+        <h3>A demo-management platform for retail, built with Advantage Solutions</h3>
+        <span class="tag">MEAN · AWS</span>
+      </div>
+      <p>Retailers across Canada, the US, and Australia — including Costco — use this platform to plan, staff, run, and bill in-store product demonstrations. It handles scheduling, vendor and item selection, staffing, on-site execution, billing, invoicing, and the reporting a demo business runs on, from payroll to scheduling.</p>
+      <div class="flow">
+        <svg viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flow diagram: schedule, staff, execute, bill, invoice, report">
+          <g font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#EAEEF5">
+            <g>
+              <rect x="10" y="30" width="130" height="60" fill="none" stroke="rgba(215,228,245,0.4)"/>
+              <text x="75" y="65" text-anchor="middle">Schedule</text>
+            </g>
+            <line x1="140" y1="60" x2="164" y2="60" stroke="#F2A93B"/>
+            <g>
+              <rect x="164" y="30" width="130" height="60" fill="none" stroke="rgba(215,228,245,0.4)"/>
+              <text x="229" y="65" text-anchor="middle">Staff</text>
+            </g>
+            <line x1="294" y1="60" x2="318" y2="60" stroke="#F2A93B"/>
+            <g>
+              <rect x="318" y="30" width="130" height="60" fill="none" stroke="rgba(215,228,245,0.4)"/>
+              <text x="383" y="65" text-anchor="middle">Execute</text>
+            </g>
+            <line x1="448" y1="60" x2="472" y2="60" stroke="#F2A93B"/>
+            <g>
+              <rect x="472" y="30" width="130" height="60" fill="none" stroke="rgba(215,228,245,0.4)"/>
+              <text x="537" y="65" text-anchor="middle">Bill</text>
+            </g>
+            <line x1="602" y1="60" x2="626" y2="60" stroke="#F2A93B"/>
+            <g>
+              <rect x="626" y="30" width="130" height="60" fill="none" stroke="rgba(215,228,245,0.4)"/>
+              <text x="691" y="65" text-anchor="middle">Invoice</text>
+            </g>
+            <line x1="756" y1="60" x2="780" y2="60" stroke="#F2A93B"/>
+            <g>
+              <rect x="780" y="30" width="110" height="60" fill="none" stroke="#5FD4C0"/>
+              <text x="835" y="65" text-anchor="middle" fill="#5FD4C0">Report</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="stackline">
+        <span class="chip">Angular</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">AWS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-top:1px solid var(--line);">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="kicker">05 — contact</span>
+      <h2>Open to conversations about full-stack engineering, Angular architecture, or the next thing to build.</h2>
+      <p class="lede">Based in Toronto, Canada.</p>
+    </div>
+    <div class="contact-actions">
+      <a href="https://www.linkedin.com/in/eldhoseelias/" target="_blank" rel="noopener" class="btn primary">Connect on LinkedIn</a>
+      <span class="contact-loc">toronto, canada</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Eldhose Elias</span>
+    <span>Built with Angular, Node.js and MongoDB in mind</span>
+  </div>
+</footer>
+
+<script>
+  var toggle = document.getElementById('navtoggle');
+  var links = document.getElementById('navlinks');
+  toggle.addEventListener('click', function(){ links.classList.toggle('open'); });
+  document.querySelectorAll('.navlinks a').forEach(function(a){
+    a.addEventListener('click', function(){ links.classList.remove('open'); });
+  });
+
+  var sections = document.querySelectorAll('section[id]');
+  var navA = document.querySelectorAll('.navlinks a');
+  window.addEventListener('scroll', function(){
+    var pos = window.scrollY + 100;
+    sections.forEach(function(sec){
+      var top = sec.offsetTop, bottom = top + sec.offsetHeight;
+      var id = sec.getAttribute('id');
+      var link = document.querySelector('.navlinks a[href="#' + id + '"]');
+      if(link){
+        if(pos >= top && pos < bottom){ link.classList.add('active'); }
+        else{ link.classList.remove('active'); }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
